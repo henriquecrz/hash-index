@@ -22,19 +22,9 @@ public class Main {
                 input = keyboard.nextLine().trim().toLowerCase();
 
                 try {
-                    long start = System.currentTimeMillis();
-                    Person person = Person.getPerson(binaryFile, Integer.parseInt(input));
-                    long end = System.currentTimeMillis();
+                    Person person = Person.getPerson(binaryFile, Person.get(Integer.parseInt(input)));
 
                     System.out.println(person != null ? person : Constant.PERSON_NOT_FOUND_MESSAGE);
-                    System.out.println(String.format("Search time: %.3f seconds.", (end - start) / 1000.0));
-
-                    start = System.currentTimeMillis();
-                    person = Person.getPerson(binaryFile, Person.get(Integer.parseInt(input)));
-                    end = System.currentTimeMillis();
-
-                    System.out.println(person != null ? person : Constant.PERSON_NOT_FOUND_MESSAGE);
-                    System.out.println(String.format("Search time: %.3f seconds.", (end - start) / 1000.0));
                 } catch (NumberFormatException e) {
                     System.out.println(input.equals(Command.QUIT) ? "Exiting..." : e.getMessage());
                 }

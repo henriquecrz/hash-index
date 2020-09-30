@@ -55,30 +55,6 @@ public class Person {
         file.writeUTF(getBirthday());
     }
 
-    public static Person getPerson(RandomAccessFile file, int rgKey) {
-        boolean isFileEnded = false;
-
-        try {
-            file.seek(Integer.BYTES);
-
-            while (!isFileEnded) { // Improve flag
-                int rg = file.readInt();
-                String name = file.readUTF();
-                String birthday = file.readUTF();
-
-                if (rg == rgKey) {
-                    return new Person(rg, name, birthday);
-                }
-            }
-        } catch (IOException ex) {
-            isFileEnded = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
     public static Person getPerson(RandomAccessFile file, long pos) {
         try {
             file.seek(pos);
